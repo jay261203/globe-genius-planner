@@ -1,9 +1,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AIChat from "@/components/AIChat";
+import InteractiveMap from "@/components/InteractiveMap";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar, Users, DollarSign, Map, Share2, Download, Edit, Clock, Star, Coffee, Camera } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Calendar, Users, DollarSign, Map, Share2, Download, Edit, Clock, Star, Coffee, Camera, Cloud, History, Copy, Trash2 } from "lucide-react";
 
 const itinerary = [
   {
@@ -60,24 +62,98 @@ const TripDetails = () => {
             </div>
           </div>
 
+          {/* Info Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <Card className="glass-card border-border/50 animate-slide-up hover-lift">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
+                    <DollarSign className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Total Budget</p>
+                    <p className="text-xl font-bold">$2,400</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="glass-card border-border/50 animate-slide-up hover-lift" style={{ animationDelay: "0.1s" }}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-secondary flex items-center justify-center">
+                    <Cloud className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Weather</p>
+                    <p className="text-xl font-bold">28°C</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="glass-card border-border/50 animate-slide-up hover-lift" style={{ animationDelay: "0.2s" }}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Activities</p>
+                    <p className="text-xl font-bold">18</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="glass-card border-border/50 animate-slide-up hover-lift" style={{ animationDelay: "0.3s" }}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-secondary flex items-center justify-center">
+                    <Star className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Quality Score</p>
+                    <p className="text-xl font-bold">9.2</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Actions Bar */}
           <div className="flex flex-wrap gap-3 mb-8 animate-slide-up">
-            <Button className="bg-gradient-primary hover:opacity-90 gap-2">
+            <Button className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
               <Map className="w-4 h-4" />
               View on Map
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 hover-lift">
               <Edit className="w-4 h-4" />
               Edit Trip
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 hover-lift">
               <Share2 className="w-4 h-4" />
-              Share
+              Share Link
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 hover-lift">
               <Download className="w-4 h-4" />
               Export PDF
             </Button>
+            <Button variant="outline" className="gap-2 hover-lift">
+              <History className="w-4 h-4" />
+              Version History
+            </Button>
+            <Button variant="outline" className="gap-2 hover-lift">
+              <Copy className="w-4 h-4" />
+              Duplicate
+            </Button>
+            <Button variant="outline" className="gap-2 hover-lift text-destructive hover:text-destructive">
+              <Trash2 className="w-4 h-4" />
+              Delete
+            </Button>
+          </div>
+
+          {/* Interactive Map */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold mb-6">Interactive Route Map</h2>
+            <InteractiveMap />
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">

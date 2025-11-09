@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Bot, User, Sparkles, MapPin, Calendar, DollarSign } from "lucide-react";
+import { Send, Bot, User, Sparkles, MapPin, Calendar, DollarSign, Mic, Wand2, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -20,10 +20,10 @@ const AIChat = () => {
   const [isTyping, setIsTyping] = useState(false);
 
   const quickActions = [
-    { icon: MapPin, label: "Weekend getaway", prompt: "Plan a weekend getaway for me" },
-    { icon: Calendar, label: "Summer vacation", prompt: "I need a 2-week summer vacation plan" },
-    { icon: DollarSign, label: "Budget trip", prompt: "Plan a budget-friendly trip" },
-    { icon: Sparkles, label: "Surprise me", prompt: "Surprise me with an amazing destination" },
+    { icon: MapPin, label: "Add beaches", prompt: "Add more beach activities to my trip" },
+    { icon: Trash2, label: "Remove museums", prompt: "Remove all museum visits" },
+    { icon: DollarSign, label: "Reduce budget", prompt: "Make this trip more budget-friendly" },
+    { icon: Wand2, label: "Optimize route", prompt: "Optimize my travel route to minimize travel time" },
   ];
 
   const handleSend = async () => {
@@ -104,35 +104,40 @@ const AIChat = () => {
       </div>
 
       {/* Quick Actions */}
-      {messages.length === 1 && (
-        <div className="p-4 border-t border-border">
-          <p className="text-xs text-muted-foreground mb-3">Quick actions:</p>
-          <div className="grid grid-cols-2 gap-2">
-            {quickActions.map((action, index) => (
-              <button
-                key={index}
-                onClick={() => handleQuickAction(action.prompt)}
-                className="p-3 rounded-lg glass-card hover:bg-muted/50 transition-colors text-left group"
-              >
-                <action.icon className="w-4 h-4 text-primary mb-1 group-hover:scale-110 transition-transform" />
-                <p className="text-xs font-medium">{action.label}</p>
-              </button>
-            ))}
-          </div>
+      <div className="p-4 border-t border-border">
+        <p className="text-xs text-muted-foreground mb-3">Quick refinements:</p>
+        <div className="grid grid-cols-2 gap-2">
+          {quickActions.map((action, index) => (
+            <button
+              key={index}
+              onClick={() => handleQuickAction(action.prompt)}
+              className="p-3 rounded-lg glass-card hover:bg-muted/50 transition-all duration-300 text-left group hover-lift"
+            >
+              <action.icon className="w-4 h-4 text-primary mb-1 group-hover:scale-110 transition-transform" />
+              <p className="text-xs font-medium">{action.label}</p>
+            </button>
+          ))}
         </div>
-      )}
+        <Button className="w-full mt-3 bg-gradient-primary hover:opacity-90 gap-2">
+          <Wand2 className="w-4 h-4" />
+          One-Click Optimization
+        </Button>
+      </div>
 
       {/* Input */}
       <div className="p-4 border-t border-border">
         <div className="flex gap-2">
+          <Button variant="outline" size="icon" className="flex-shrink-0 hover-lift">
+            <Mic className="w-4 h-4" />
+          </Button>
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Describe your dream trip..."
+            placeholder="Type or speak to refine your trip..."
             className="flex-1"
           />
-          <Button onClick={handleSend} size="icon" className="bg-gradient-primary hover:opacity-90">
+          <Button onClick={handleSend} size="icon" className="bg-gradient-primary hover:opacity-90 hover-lift">
             <Send className="w-4 h-4" />
           </Button>
         </div>
