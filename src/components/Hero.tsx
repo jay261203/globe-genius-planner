@@ -20,13 +20,18 @@ const Hero = () => {
       {/* Animated Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-hero opacity-60 animate-pulse" style={{ animationDuration: '4s' }} />
 
+      {/* Floating Orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-float" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent/20 rounded-full blur-[80px] animate-float" style={{ animationDelay: '2s' }} />
+
       {/* Content */}
       <div className="container relative z-10 px-4 py-20 animate-fade-in">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full animate-scale-in">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium">AI-Powered Travel Planning</span>
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full animate-scale-in hover-glow">
+            <Sparkles className="w-4 h-4 text-accent animate-pulse" />
+            <span className="text-sm font-medium bg-gradient-primary bg-clip-text text-transparent">AI-Powered Travel Planning</span>
           </div>
 
           {/* Heading */}
@@ -42,36 +47,43 @@ const Hero = () => {
           </p>
 
           {/* Trip Planning Card */}
-          <div className="glass-card p-8 rounded-3xl max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <div className="glass-card p-8 rounded-3xl max-w-2xl mx-auto animate-slide-up hover-lift hover-glow" style={{ animationDelay: '0.3s' }}>
             <div className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 {/* Destination Input */}
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <div className="relative group">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   <input
                     type="text"
                     placeholder="Where to?"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border 
+                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50
+                             transition-all duration-300 hover:border-border/80"
                   />
                 </div>
 
                 {/* Date Input */}
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <div className="relative group">
+                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   <input
                     type="text"
                     placeholder="When?"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border 
+                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50
+                             transition-all duration-300 hover:border-border/80"
                   />
                 </div>
               </div>
 
               <Button 
                 size="lg" 
-                className="w-full bg-gradient-primary hover:opacity-90 transition-all hover:scale-[1.02] shadow-lg"
+                className="w-full bg-gradient-primary hover:opacity-90 transition-all hover:scale-105 
+                         shadow-lg hover:shadow-xl group relative overflow-hidden"
               >
-                <Sparkles className="w-5 h-5 mr-2" />
-                Plan My Trip
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                               translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+                <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                <span className="relative">Plan My Trip</span>
               </Button>
             </div>
           </div>
