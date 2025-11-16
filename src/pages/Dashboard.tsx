@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import { PremiumModal } from "@/components/PremiumModal";
 import { Button } from "@/components/ui/button";
@@ -49,11 +49,11 @@ const trips = [
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-screen flex">
+      <Sidebar />
       
-      <main className="flex-1 pt-24 pb-12 gradient-mesh">
-        <div className="container mx-auto px-4">
+      <main className="flex-1 ml-64 pt-8 pb-12 gradient-mesh">
+        <div className="container mx-auto px-4">{/* Keep rest of content */}
           {/* Header */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-12 animate-slide-down">
             <div>

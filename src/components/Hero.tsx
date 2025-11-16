@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { MapPin, Calendar, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-nature.jpg";
+import TripPlanningForm from "./TripPlanningForm";
 
 const Hero = () => {
   return (
@@ -46,63 +46,8 @@ const Hero = () => {
             Explore the world, one trip at a time.
           </p>
 
-          {/* Trip Planning Card */}
-          <div className="glass-card p-8 rounded-3xl max-w-2xl mx-auto animate-slide-up hover-lift hover-glow" style={{ animationDelay: '0.3s' }}>
-            <div className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                {/* Destination Input */}
-                <div className="relative group">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                  <input
-                    type="text"
-                    placeholder="Where to?"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border 
-                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50
-                             transition-all duration-300 hover:border-border/80"
-                  />
-                </div>
-
-                {/* Date Input */}
-                <div className="relative group">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                  <input
-                    type="text"
-                    placeholder="When?"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-background border border-border 
-                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50
-                             transition-all duration-300 hover:border-border/80"
-                  />
-                </div>
-              </div>
-
-              <Button 
-                size="lg" 
-                className="w-full bg-gradient-primary hover:opacity-90 transition-all hover:scale-105 
-                         shadow-lg hover:shadow-xl group relative overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                               translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                <span className="relative">Plan My Trip</span>
-              </Button>
-            </div>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-secondary" />
-              <span>AI-Powered</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>Personalized</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Free to Start</span>
-            </div>
-          </div>
+          {/* Trip Planning Form */}
+          <TripPlanningForm />
         </div>
       </div>
 

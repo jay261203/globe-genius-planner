@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,10 +18,10 @@ const categories = [
 
 const Explore = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-screen flex">
+      <Sidebar />
       
-      <main className="flex-1 pt-24 pb-12">
+      <main className="flex-1 ml-64 pt-8 pb-12">{/* Keep rest of content */}
         {/* Hero Search */}
         <section className="py-16 gradient-mesh">
           <div className="container mx-auto px-4">
