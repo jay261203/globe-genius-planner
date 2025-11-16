@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -44,11 +44,11 @@ const badges = [
 
 const Profile = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-screen flex">
+      <Sidebar />
       
-      <main className="flex-1 pt-24 pb-12">
-        <div className="container mx-auto px-4">
+      <main className="flex-1 ml-64 pt-8 pb-12">
+        <div className="container mx-auto px-4">{/* Keep rest of content */}
           {/* Profile Header */}
           <Card className="glass-card border-border/50 mb-8 animate-scale-in overflow-hidden">
             <div className="h-32 bg-gradient-primary" />

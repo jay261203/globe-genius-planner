@@ -106,10 +106,20 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Glassmorphism 2.0 - Subtle blur with bright border */
   .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 shadow-[0_8px_32px_0_hsl(var(--primary)/0.1)] 
-           hover:shadow-[0_12px_48px_0_hsl(var(--primary)/0.15)] hover:border-border/80 
+    @apply backdrop-blur-md bg-background/30 border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]
+           hover:shadow-[0_12px_48px_0_rgba(31,38,135,0.2)] hover:border-white/30 
            transition-all duration-300;
+  }
+  
+  .glass-sidebar {
+    @apply backdrop-blur-lg bg-background/20 border-r border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)];
+  }
+  
+  .glass-input {
+    @apply backdrop-blur-sm bg-background/40 border border-white/20 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]
+           hover:border-white/30 transition-all duration-300;
   }
 
   .gradient-text {
