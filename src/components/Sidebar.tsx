@@ -24,6 +24,15 @@ const Sidebar = () => {
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">
         <NavLink
+          to="/trip-dashboard"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
+          activeClassName="bg-white/10 text-foreground"
+        >
+          <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          <span className="font-medium">Trip Dashboard</span>
+        </NavLink>
+
+        <NavLink
           to="/dashboard"
           className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
           activeClassName="bg-white/10 text-foreground"
