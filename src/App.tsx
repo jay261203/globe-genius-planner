@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
 import TripDetails from "./pages/TripDetails";
+import TripDashboard from "./pages/TripDashboard";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
@@ -21,6 +22,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/trip-dashboard" element={<TripDashboard />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/trip/:id" element={<TripDetails />} />
           <Route path="/profile" element={<Profile />} />
