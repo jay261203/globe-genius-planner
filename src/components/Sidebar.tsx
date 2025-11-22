@@ -63,21 +63,6 @@ const Sidebar = ({ isOpen = false, onClose }: SidebarProps) => {
         <Tooltip>
           <TooltipTrigger asChild>
             <NavLink
-              to="/trip-dashboard"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
-              activeClassName="bg-white/10 text-foreground border-l-4 border-primary"
-              onClick={onClose}
-            >
-              <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform" />
-              <span className="font-medium">Trip Dashboard</span>
-            </NavLink>
-          </TooltipTrigger>
-          <TooltipContent side="right">View your trip dashboard</TooltipContent>
-        </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <NavLink
               to="/dashboard"
               className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all group"
               activeClassName="bg-white/10 text-foreground border-l-4 border-primary"
