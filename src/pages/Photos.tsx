@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Container from "@/components/Container";
+import Navbar from "@/components/Navbar";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -102,8 +103,10 @@ const Photos = () => {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
-      <Container className="max-w-7xl animate-fade-in">
+    <div className="w-full min-h-screen">
+      <Navbar />
+      <div className="py-8 px-4">
+        <Container className="max-w-7xl animate-fade-in">
         {/* Header */}
         <SectionHeader
           title="Travel Photos"
@@ -268,6 +271,7 @@ const Photos = () => {
           </Card>
         )}
       </Container>
+      </div>
     </div>
   );
 };
