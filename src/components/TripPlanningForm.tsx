@@ -19,16 +19,19 @@ const TripPlanningForm = () => {
   };
 
   return (
-    <div className="glass-card p-8 rounded-3xl max-w-4xl mx-auto animate-slide-up hover-lift" style={{ animationDelay: '0.3s' }}>
+    <div
+      className="glass-card p-6 md:p-10 rounded-3xl max-w-2xl w-full mx-auto animate-slide-up hover-lift"
+      style={{ animationDelay: "0.3s" }}
+    >
       <div className="space-y-6">
         {/* Destination */}
         <div className="relative group">
           <label className="block text-sm font-medium mb-2 text-foreground">Destination</label>
-          <MapPin className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+          <MapPin className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <input
             type="text"
             placeholder="Japan or Tokyo"
-            className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+            className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                      transition-all duration-300 hover:border-white/30"
           />
@@ -38,10 +41,10 @@ const TripPlanningForm = () => {
         <div className="grid md:grid-cols-2 gap-4">
           <div className="relative group">
             <label className="block text-sm font-medium mb-2 text-foreground">Start Date</label>
-            <Calendar className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <Calendar className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <input
               type="date"
-              className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+              className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                        transition-all duration-300 hover:border-white/30"
             />
@@ -49,10 +52,10 @@ const TripPlanningForm = () => {
 
           <div className="relative group">
             <label className="block text-sm font-medium mb-2 text-foreground">End Date</label>
-            <Calendar className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <Calendar className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <input
               type="date"
-              className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+              className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                        transition-all duration-300 hover:border-white/30"
             />
@@ -62,9 +65,9 @@ const TripPlanningForm = () => {
         {/* Budget */}
         <div className="relative group">
           <label className="block text-sm font-medium mb-2 text-foreground">Budget (Optional)</label>
-          <DollarSign className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+          <DollarSign className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <select
-            className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+            className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                      transition-all duration-300 hover:border-white/30"
           >
@@ -78,7 +81,7 @@ const TripPlanningForm = () => {
         {/* Travel Style */}
         <div>
           <label className="block text-sm font-medium mb-3 text-foreground">Travel Style & Preferences</label>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {travelStyles.map((style) => (
               <button
                 key={style}
@@ -99,12 +102,12 @@ const TripPlanningForm = () => {
         <div className="grid md:grid-cols-2 gap-4">
           <div className="relative group">
             <label className="block text-sm font-medium mb-2 text-foreground">Adults</label>
-            <Users className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <Users className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <input
               type="number"
               min="1"
               defaultValue="2"
-              className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+              className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                        transition-all duration-300 hover:border-white/30"
             />
@@ -112,12 +115,12 @@ const TripPlanningForm = () => {
 
           <div className="relative group">
             <label className="block text-sm font-medium mb-2 text-foreground">Children</label>
-            <Users className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <Users className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <input
               type="number"
               min="0"
               defaultValue="0"
-              className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+              className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                        transition-all duration-300 hover:border-white/30"
             />
@@ -127,9 +130,9 @@ const TripPlanningForm = () => {
         {/* Hotel Preference */}
         <div className="relative group">
           <label className="block text-sm font-medium mb-2 text-foreground">Hotel Preference (Optional)</label>
-          <Hotel className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+          <Hotel className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <select
-            className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+            className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                      transition-all duration-300 hover:border-white/30"
           >
@@ -145,9 +148,9 @@ const TripPlanningForm = () => {
         {/* Mobility Preference */}
         <div className="relative group">
           <label className="block text-sm font-medium mb-2 text-foreground">Mobility Preference</label>
-          <Car className="absolute left-3 top-[42px] w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+          <Car className="absolute left-4 top-[70%] -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <select
-            className="w-full pl-11 pr-4 py-3 rounded-xl glass-input
+            className="w-full pl-12 pr-4 h-12 rounded-xl glass-input
                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-white/30
                      transition-all duration-300 hover:border-white/30"
           >
@@ -162,10 +165,10 @@ const TripPlanningForm = () => {
         {/* Generate Button */}
         <Button 
           size="lg" 
-          className="w-full bg-gradient-primary hover:opacity-90 transition-all hover:scale-105 
-                   text-white font-semibold shadow-glow h-14 text-lg rounded-xl"
+          className="w-full bg-gradient-primary hover:opacity-95 transition-all transform hover:-translate-y-0.5
+                   text-white font-semibold shadow-lg h-14 text-lg rounded-xl flex items-center justify-center gap-3"
         >
-          <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
+          <Sparkles className="mr-1 h-5 w-5 text-white" />
           Generate My Perfect Trip
         </Button>
       </div>

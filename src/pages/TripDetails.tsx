@@ -1,6 +1,4 @@
-import Footer from "@/components/Footer";
 import AIChat from "@/components/AIChat";
-import Sidebar from "@/components/Sidebar";
 import InteractiveMap from "@/components/InteractiveMap";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,11 +28,8 @@ const itinerary = [
 
 const TripDetails = () => {
   return (
-    <div className="min-h-screen flex">
-      <Sidebar />
-      
-      <main className="flex-1 ml-64 pt-8 pb-12">
-        <div className="container mx-auto px-4">{/* Keep rest of content */}
+    <div className="pt-8 pb-12">
+      <div className="container mx-auto px-4">{/* Keep rest of content */}
           {/* Hero Section */}
           <div className="relative h-[400px] rounded-3xl overflow-hidden mb-8 animate-scale-in">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500" />
@@ -218,10 +213,7 @@ const TripDetails = () => {
               </div>
             </div>
           </div>
-        </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 };

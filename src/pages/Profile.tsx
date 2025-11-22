@@ -1,10 +1,9 @@
-import Sidebar from "@/components/Sidebar";
-import Footer from "@/components/Footer";
+import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MapPin, Star, Globe, Camera, Award, Users, Heart, Share2, Settings } from "lucide-react";
+import { MapPin, Star, Globe, Camera, Award, Users, Heart, Share2, Settings } from 'lucide-react';
 
 const trips = [
   {
@@ -44,71 +43,79 @@ const badges = [
 
 const Profile = () => {
   return (
-    <div className="min-h-screen flex">
-      <Sidebar />
-      
-      <main className="flex-1 ml-64 pt-8 pb-12">
-        <div className="container mx-auto px-4">{/* Keep rest of content */}
-          {/* Profile Header */}
-          <Card className="glass-card border-border/50 mb-8 animate-scale-in overflow-hidden">
-            <div className="h-32 bg-gradient-primary" />
-            <CardContent className="p-8 -mt-16">
-              <div className="flex flex-col md:flex-row items-start md:items-end gap-6">
-                <Avatar className="w-32 h-32 border-4 border-background shadow-elevated">
-                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=traveler" />
-                  <AvatarFallback>TR</AvatarFallback>
+    <div className="pb-12">
+      <Container className="mt-8">
+          <Card className="glass-card border-border/50 mb-12 animate-scale-in overflow-hidden">
+            <div className="h-40 bg-gradient-hero" />
+            <CardContent className="p-8 -mt-20">
+              <div className="flex flex-col md:flex-row items-start md:items-end gap-8">
+                <Avatar className="w-40 h-40 border-4 border-background shadow-elevated hover-lift transition-transform">
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=traveler" alt="Sarah Anderson" />
+                  <AvatarFallback>SA</AvatarFallback>
                 </Avatar>
                 
                 <div className="flex-1">
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6">
                     <div>
-                      <h1 className="text-3xl font-bold mb-1">Sarah Anderson</h1>
-                      <p className="text-muted-foreground">@sarahtravels</p>
+                      <h1 className="text-4xl font-bold mb-2">Sarah Anderson</h1>
+                      <p className="text-lg text-muted-foreground">@sarahtravels</p>
                     </div>
                     <div className="flex gap-2">
                       <Button variant="outline" size="sm" className="gap-2 hover-lift">
                         <Share2 className="w-4 h-4" />
-                        Share Profile
+                        Share
                       </Button>
-                      <Button variant="outline" size="sm" className="gap-2 hover-lift">
+                      <Button size="sm" className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
                         <Settings className="w-4 h-4" />
-                        Edit Profile
+                        Edit
                       </Button>
                     </div>
                   </div>
                   
-                  <p className="text-muted-foreground mb-4 max-w-2xl">
+                  <p className="text-muted-foreground mb-6 max-w-2xl leading-relaxed">
                     Passionate traveler exploring the world one destination at a time. 
                     Love finding hidden gems and authentic local experiences.
                   </p>
                   
-                  <div className="flex flex-wrap gap-6 mb-4">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-primary" />
-                      <span className="font-semibold">23</span>
-                      <span className="text-muted-foreground">Countries</span>
+                  <div className="grid grid-cols-3 gap-6 mb-6 py-6 border-y border-border/50">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-lg">23</p>
+                        <p className="text-xs text-muted-foreground">Countries</p>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      <span className="font-semibold">1.2K</span>
-                      <span className="text-muted-foreground">Followers</span>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
+                        <Users className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-lg">1.2K</p>
+                        <p className="text-xs text-muted-foreground">Followers</p>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Heart className="w-4 h-4 text-primary" />
-                      <span className="font-semibold">2.5K</span>
-                      <span className="text-muted-foreground">Total Likes</span>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <Heart className="w-5 h-5 text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-lg">2.5K</p>
+                        <p className="text-xs text-muted-foreground">Likes</p>
+                      </div>
                     </div>
                   </div>
 
                   {/* Travel Badges */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
                     {badges.map((badge, idx) => (
                       <div
                         key={badge.id}
-                        className="flex items-center gap-2 px-4 py-2 rounded-full glass-card hover-lift animate-slide-right"
+                        className="flex items-center gap-2 px-4 py-2 rounded-full glass-card hover-lift animate-slide-right cursor-default"
                         style={{ animationDelay: `${idx * 0.1}s` }}
                       >
-                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${badge.color} flex items-center justify-center`}>
+                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${badge.color} flex items-center justify-center flex-shrink-0`}>
                           <badge.icon className="w-4 h-4 text-white" />
                         </div>
                         <span className="text-sm font-medium">{badge.name}</span>
@@ -120,13 +127,16 @@ const Profile = () => {
             </CardContent>
           </Card>
 
-          {/* Shared Trips */}
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-3xl font-bold">Shared Trips</h2>
-              <Badge variant="secondary" className="gap-2">
-                <Globe className="w-3 h-3" />
-                {trips.length} Public Trips
+          {/* Shared Trips Section */}
+          <div className="animate-fade-in">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold mb-1">Shared Trips</h2>
+                <p className="text-muted-foreground">Journeys shared with the community</p>
+              </div>
+              <Badge className="gap-2 px-4 py-2">
+                <Globe className="w-4 h-4" />
+                {trips.length} Public
               </Badge>
             </div>
 
@@ -139,11 +149,11 @@ const Profile = () => {
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={trip.image}
+                      src={trip.image || "/placeholder.svg"}
                       alt={trip.destination}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <Badge className="absolute top-3 right-3 bg-gradient-primary border-0">
                       Public
                     </Badge>
@@ -155,17 +165,17 @@ const Profile = () => {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 hover:text-foreground transition-colors">
                           <Heart className="w-4 h-4" />
                           <span>{trip.likes}</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 hover:text-foreground transition-colors">
                           <Star className="w-4 h-4" />
                           <span>{trip.saves}</span>
                         </div>
                       </div>
                       <Button variant="ghost" size="sm" className="hover-lift">
-                        View Trip
+                        View
                       </Button>
                     </div>
                   </CardContent>
@@ -173,10 +183,7 @@ const Profile = () => {
               ))}
             </div>
           </div>
-        </div>
-      </main>
-
-      <Footer />
+      </Container>
     </div>
   );
 };
