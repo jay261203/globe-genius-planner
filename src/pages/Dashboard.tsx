@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Container from "@/components/Container";
+import Navbar from "@/components/Navbar";
 import SectionHeader from "@/components/SectionHeader";
 import StatCard from "@/components/StatCard";
 import TripCard from "@/components/TripCard";
@@ -50,8 +51,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="w-full min-h-screen py-8 px-4">
-      <Container className="max-w-7xl animate-fade-in">
+    <div className="w-full min-h-screen">
+      <Navbar />
+      <div className="py-8 px-4">
+        <Container className="max-w-7xl animate-fade-in">
           {/* Header Section */}
           <SectionHeader
             title="Welcome back, Sarah! 👋"
@@ -135,6 +138,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </Container>
+      </div>
     </div>
   );
 };
