@@ -50,8 +50,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="py-8 bg-background">
-      <Container className="animate-fade-in">
+    <div className="w-full min-h-screen py-8 px-4">
+      <Container className="max-w-7xl animate-fade-in">
           {/* Header Section */}
           <SectionHeader
             title="Welcome back, Sarah! 👋"

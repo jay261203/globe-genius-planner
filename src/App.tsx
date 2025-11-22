@@ -17,6 +17,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Settings from "./pages/Settings";
 import Onboarding from "./pages/Onboarding";
+import Receipts from "./pages/Receipts";
+import Photos from "./pages/Photos";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +101,22 @@ const App = () => (
               element={
                 <Layout fullWidth={true}>
                   <Onboarding />
+                </Layout>
+              }
+            />
+            <Route
+              path="/receipts"
+              element={
+                <Layout>
+                  <Receipts />
+                </Layout>
+              }
+            />
+            <Route
+              path="/photos"
+              element={
+                <Layout>
+                  <Photos />
                 </Layout>
               }
             />

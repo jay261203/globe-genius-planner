@@ -62,7 +62,7 @@ const trendingDestinations = [
 
 const Explore = () => {
   return (
-    <div className="pb-12">
+    <div className="w-full min-h-screen pb-12">
       {/* Hero Search Section */}
       <section className="py-20 gradient-mesh">
           <Container className="animate-fade-in">

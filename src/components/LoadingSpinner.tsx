@@ -1,5 +1,3 @@
-import { Spinner } from '@/components/ui/spinner';
-
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
   text?: string;
@@ -7,9 +5,15 @@ interface LoadingSpinnerProps {
 }
 
 export const LoadingSpinner = ({ size = 'md', text, fullScreen = false }: LoadingSpinnerProps) => {
+  const sizeClasses = {
+    sm: 'w-6 h-6 border-2',
+    md: 'w-8 h-8 border-2',
+    lg: 'w-12 h-12 border-3'
+  };
+
   const content = (
     <div className="flex flex-col items-center justify-center gap-4">
-      <Spinner className={size === 'sm' ? 'w-6 h-6' : size === 'lg' ? 'w-12 h-12' : 'w-8 h-8'} />
+      <div className={`${sizeClasses[size]} border-primary border-t-transparent rounded-full animate-spin`} />
       {text && <p className="text-muted-foreground text-sm">{text}</p>}
     </div>
   );
