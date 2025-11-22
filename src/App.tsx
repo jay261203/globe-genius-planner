@@ -10,7 +10,6 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
 import TripDetails from "./pages/TripDetails";
-import TripDashboard from "./pages/TripDashboard";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
@@ -45,15 +44,6 @@ const App = () => (
               element={
                 <Layout>
                   <Dashboard />
-                </Layout>
-              }
-            />
-
-            <Route
-              path="/trip-dashboard"
-              element={
-                <Layout>
-                  <TripDashboard />
                 </Layout>
               }
             />
