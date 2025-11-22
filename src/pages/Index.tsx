@@ -4,11 +4,11 @@ import Destinations from "@/components/Destinations";
 
 const Index = () => {
   return (
-    <>
+    <div className="w-full">
       <Hero />
       <Features />
       <Destinations />
-    </>
+    </div>
   );
 };
 
