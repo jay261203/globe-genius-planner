@@ -1,6 +1,5 @@
 
 import Container from "@/components/Container";
-import Navbar from "@/components/Navbar";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -63,9 +62,7 @@ const trendingDestinations = [
 
 const Explore = () => {
   return (
-    <div className="w-full min-h-screen">
-      <Navbar />
-      <div className="pb-12">
+    <div className="w-full min-h-screen pb-12">
       {/* Hero Search Section */}
       <section className="py-20 gradient-mesh">
           <Container className="animate-fade-in">
@@ -261,7 +258,6 @@ const Explore = () => {
             </div>
           </Container>
       </section>
-      </div>
     </div>
   );
 };

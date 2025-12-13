@@ -39,7 +39,7 @@ const Hero = () => {
 
           {/* Heading */}
           <div>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter animate-slide-up mb-4" style={{ animationDelay: '0.1s' }}>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight animate-slide-up mb-4" style={{ animationDelay: '0.1s' }}>
               Plan Your Perfect
               <span className="block gradient-text mt-2 leading-tight">Adventure</span>
             </h1>

@@ -1,6 +1,5 @@
 import AIChat from "@/components/AIChat";
 import InteractiveMap from "@/components/InteractiveMap";
-import Navbar from "@/components/Navbar";
 import BudgetCard from "@/components/trip-cards/BudgetCard";
 import ExpensesCard from "@/components/trip-cards/ExpensesCard";
 import ReadinessCard from "@/components/trip-cards/ReadinessCard";
@@ -55,10 +54,8 @@ const mockData = {
 
 const TripDetails = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <div className="py-8 px-4">
-        <div className="container mx-auto max-w-7xl">
+    <div className="min-h-screen bg-background py-8 px-4">
+      <div className="container mx-auto max-w-7xl">
         {/* Hero Section */}
         <div className="relative h-[300px] md:h-[400px] rounded-3xl overflow-hidden mb-8 animate-scale-in">
           <div 
@@ -165,7 +162,6 @@ const TripDetails = () => {
             <AIChat />
           </CardContent>
         </Card>
-        </div>
       </div>
     </div>
   );

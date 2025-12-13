@@ -107,6 +107,10 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
   h1 {
     @apply text-5xl font-bold tracking-tight;
   }

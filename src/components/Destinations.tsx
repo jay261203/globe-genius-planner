@@ -29,10 +29,13 @@ const Destinations = () => {
     <section className="py-24 px-4 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+            Destinations
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold">
             Popular <span className="gradient-text">Destinations</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover trending places loved by travelers worldwide
           </p>
         </div>

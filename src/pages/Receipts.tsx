@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Container from "@/components/Container";
-import Navbar from "@/components/Navbar";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -83,10 +82,8 @@ const Receipts = () => {
   }, 0);
 
   return (
-    <div className="w-full min-h-screen">
-      <Navbar />
-      <div className="py-8 px-4">
-        <Container className="max-w-6xl animate-fade-in">
+    <div className="w-full min-h-screen py-8 px-4">
+      <Container className="max-w-6xl animate-fade-in">
         {/* Header */}
         <SectionHeader
           title="Receipts & Expenses"
@@ -259,7 +256,6 @@ const Receipts = () => {
           )}
         </div>
       </Container>
-      </div>
     </div>
   );
 };
