@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Container from "@/components/Container";
-import Navbar from "@/components/Navbar";
 import SectionHeader from "@/components/SectionHeader";
 import StatCard from "@/components/StatCard";
 import TripCard from "@/components/TripCard";
 import { PremiumModal } from "@/components/PremiumModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Plus, MapPin, Calendar, Clock, Globe, Sparkles, TrendingUp } from 'lucide-react';
+import { Plus, MapPin, Calendar, Clock, Globe, Sparkles } from 'lucide-react';
 
 const stats = [
   { label: "Total Trips", value: "12", change: "+2 this month", icon: MapPin, color: "text-primary" },
@@ -51,10 +50,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="w-full min-h-screen">
-      <Navbar />
-      <div className="py-8 px-4">
-        <Container className="max-w-7xl animate-fade-in">
+    <div className="w-full min-h-screen py-8 px-4">
+      <Container className="max-w-7xl animate-fade-in">
           {/* Header Section */}
           <SectionHeader
             title="Welcome back, Sarah! 👋"
@@ -138,7 +135,6 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </Container>
-      </div>
     </div>
   );
 };

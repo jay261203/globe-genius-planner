@@ -34,11 +34,6 @@ const Header = ({ onToggleSidebar }: { onToggleSidebar?: () => void }) => {
               Explore
             </Link>
 
-            <Link to="/trip-dashboard" className="text-foreground/80 hover:text-foreground transition-colors duration-200 font-medium flex items-center gap-2 whitespace-nowrap">
-              <MapPin className="w-4 h-4" />
-              Trips
-            </Link>
-
             <Link to="/dashboard" className="text-foreground/80 hover:text-foreground transition-colors duration-200 font-medium flex items-center gap-2 whitespace-nowrap">
               <LayoutDashboard className="w-4 h-4" />
               My Trips
