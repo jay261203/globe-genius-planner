@@ -1,78 +1,71 @@
-import { Sparkles, ArrowRight } from 'lucide-react';
-import heroImage from "@/assets/hero-nature.jpg";
-import TripPlanningForm from "./TripPlanningForm";
+import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import TripPlanningForm from "./TripPlanningForm";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
-      </div>
-
-      {/* Animated Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-40 animate-pulse" style={{ animationDuration: '4s' }} />
-
-      {/* Floating Orbs - Enhanced */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-[100px] animate-float mix-blend-multiply" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/25 rounded-full blur-[120px] animate-float mix-blend-multiply" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent/25 rounded-full blur-[80px] animate-float mix-blend-multiply" style={{ animationDelay: '2s' }} />
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-16 bg-gradient-hero">
+      {/* Subtle gradient mesh */}
+      <div className="absolute inset-0 bg-gradient-subtle opacity-80" />
 
       {/* Content */}
-      <div className="container relative z-10 px-4 py-20 animate-fade-in">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      <div className="container relative z-10 px-4 py-20">
+        <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full animate-scale-in hover-glow cursor-default">
-            <Sparkles className="w-4 h-4 text-accent animate-pulse" />
-            <span className="text-sm font-semibold bg-gradient-primary bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-sm font-medium text-primary">
               AI-Powered Travel Planning
             </span>
           </div>
 
           {/* Heading */}
-          <div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight animate-slide-up mb-4" style={{ animationDelay: '0.1s' }}>
-              Plan Your Perfect
-              <span className="block gradient-text mt-2 leading-tight">Adventure</span>
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight leading-[1.1]">
+              Plan your perfect trip
+              <span className="block text-muted-foreground mt-2">in minutes, not hours</span>
             </h1>
           </div>
 
           {/* Subheading */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Let our AI create personalized travel itineraries tailored to your dreams. Explore the world, one trip at a time.
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Let AI create personalized travel itineraries tailored to your preferences, 
+            budget, and travel style. Start your next adventure today.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift text-base px-8">
-              <Sparkles className="w-5 h-5" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button size="lg" className="h-12 px-8 btn-press">
               Start Planning
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <Button size="lg" variant="outline" className="gap-2 hover-lift text-base px-8">
-              Learn More
-              <ArrowRight className="w-5 h-5" />
+            <Button size="lg" variant="outline" className="h-12 px-8 btn-press">
+              See How It Works
             </Button>
           </div>
 
           {/* Trip Planning Form */}
-          <div className="pt-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+          <div className="pt-12 max-w-2xl mx-auto">
             <TripPlanningForm />
           </div>
-        </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow z-20">
-        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-foreground/40 rounded-full" />
+          {/* Trust indicators */}
+          <div className="pt-8 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-foreground">50,000+</span>
+              <span>trips planned</span>
+            </div>
+            <div className="hidden sm:block w-px h-4 bg-border" />
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-foreground">4.9★</span>
+              <span>rating</span>
+            </div>
+            <div className="hidden sm:block w-px h-4 bg-border" />
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-foreground">120+</span>
+              <span>countries</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
