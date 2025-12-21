@@ -1,56 +1,48 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Compass } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import TripPlanningForm from "./TripPlanningForm";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-16 bg-gradient-hero">
-      {/* Subtle gradient mesh */}
-      <div className="absolute inset-0 bg-gradient-subtle opacity-80" />
+    <section className="relative min-h-[85vh] flex items-center justify-center pt-16 overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-gradient-hero" />
+      <div className="absolute inset-0 bg-gradient-subtle" />
 
       {/* Content */}
-      <div className="container relative z-10 px-4 py-20">
+      <div className="container relative z-10 px-4 py-16 md:py-24">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">
-              AI-Powered Travel Planning
-            </span>
-          </div>
-
-          {/* Heading */}
+          {/* Heading - Clear value proposition */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight leading-[1.1]">
-              Plan your perfect trip
-              <span className="block text-muted-foreground mt-2">in minutes, not hours</span>
+              AI plans your entire trip
+              <span className="block text-muted-foreground mt-2">in minutes</span>
             </h1>
           </div>
 
           {/* Subheading */}
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Let AI create personalized travel itineraries tailored to your preferences, 
-            budget, and travel style. Start your next adventure today.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Get personalized itineraries tailored to your budget, preferences, and travel style. No more hours of research.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Button size="lg" className="h-12 px-8 btn-press">
-              Start Planning
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 btn-press">
-              See How It Works
-            </Button>
+          {/* CTA Buttons - Clear hierarchy */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+            <Link to="/signup">
+              <Button size="lg" className="h-12 px-8 text-base font-medium btn-press w-full sm:w-auto">
+                Start Planning
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+            <Link to="/explore">
+              <Button size="lg" variant="outline" className="h-12 px-8 text-base btn-press w-full sm:w-auto">
+                <Compass className="w-4 h-4 mr-2" />
+                Explore Destinations
+              </Button>
+            </Link>
           </div>
 
-          {/* Trip Planning Form */}
-          <div className="pt-12 max-w-2xl mx-auto">
-            <TripPlanningForm />
-          </div>
-
-          {/* Trust indicators */}
-          <div className="pt-8 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+          {/* Trust indicators - minimal */}
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-foreground">50,000+</span>
               <span>trips planned</span>

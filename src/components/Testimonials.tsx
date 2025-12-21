@@ -1,96 +1,81 @@
-import { Star, Quote } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
     name: "Sarah Mitchell",
     role: "Travel Blogger",
     avatar: "SM",
-    content: "Trippy transformed how I plan my trips. The AI suggestions are incredibly accurate and save me hours of research.",
+    content: "Trippy transformed how I plan my trips. The AI suggestions are incredibly accurate and save me hours.",
     rating: 5,
   },
   {
     name: "James Rodriguez",
     role: "Digital Nomad",
     avatar: "JR",
-    content: "Best travel planning tool I've ever used. The itineraries are well-thought-out and cover all the hidden gems.",
+    content: "Best travel planning tool I've ever used. The itineraries cover all the hidden gems.",
     rating: 5,
   },
   {
     name: "Emily Chen",
     role: "Adventure Seeker",
     avatar: "EC",
-    content: "From budget tracking to weather updates, everything I need is in one place. Absolutely love it!",
+    content: "From budget tracking to weather updates, everything I need is in one place.",
     rating: 5,
   },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[100px]" />
-
-      <div className="container mx-auto relative z-10">
-        <div className="text-center mb-16 space-y-4">
-          <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-            Testimonials
-          </span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold">
-            Loved by <span className="gradient-text">Travelers</span>
+    <section className="py-20 md:py-24 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-12 md:mb-16 space-y-3">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
+            Loved by travelers
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See what our community has to say about their experience with Trippy
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            See what our community has to say about their experience
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card
+            <div
               key={index}
-              className="glass-card border-border/50 hover-lift group relative overflow-hidden"
+              className="p-6 rounded-xl bg-card border border-border/60 hover:border-border transition-all duration-300"
               style={{
-                animation: "slide-up 0.6s ease-out forwards",
-                animationDelay: `${index * 0.15}s`,
+                animation: "slide-up 0.5s ease-out forwards",
+                animationDelay: `${index * 0.1}s`,
                 opacity: 0,
               }}
             >
-              <CardContent className="p-8">
-                {/* Quote Icon */}
-                <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Quote className="w-16 h-16 text-primary" />
-                </div>
+              {/* Rating */}
+              <div className="flex gap-0.5 mb-4">
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
+              {/* Content */}
+              <p className="text-foreground/80 mb-5 leading-relaxed text-sm">
+                "{testimonial.content}"
+              </p>
 
-                {/* Content */}
-                <p className="text-foreground/80 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.role}
-                    </p>
-                  </div>
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium text-sm">
+                  {testimonial.avatar}
                 </div>
-              </CardContent>
-            </Card>
+                <div>
+                  <p className="font-medium text-sm text-foreground">{testimonial.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

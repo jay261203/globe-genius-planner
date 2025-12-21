@@ -1,262 +1,208 @@
-
 import Container from "@/components/Container";
-import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Search, TrendingUp, Heart, Star, Share2, Copy } from 'lucide-react';
+import { Search, Heart, Lightbulb } from 'lucide-react';
 
 const categories = [
-  { name: "Beaches", icon: "🏖️", count: 156 },
-  { name: "Mountains", icon: "⛰️", count: 98 },
-  { name: "Cities", icon: "🏙️", count: 234 },
-  { name: "Adventure", icon: "🎒", count: 187 },
-  { name: "Cultural", icon: "🏛️", count: 145 },
-  { name: "Romantic", icon: "💑", count: 123 },
+  { name: "Beaches", icon: "🏖️" },
+  { name: "Mountains", icon: "⛰️" },
+  { name: "Cities", icon: "🏙️" },
+  { name: "Adventure", icon: "🎒" },
+  { name: "Cultural", icon: "🏛️" },
+  { name: "Romantic", icon: "💑" },
 ];
 
 const communityTrips = [
   {
     destination: "Bali Adventure",
     author: "Sarah K.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800",
     days: 7,
     budget: "$$",
-    likes: 234,
-    saves: 89,
     tags: ["Adventure", "Beach", "Culture"],
   },
   {
     destination: "Tokyo Explorer",
     author: "Mike Chen",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=mike",
     image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
     days: 10,
     budget: "$$$",
-    likes: 567,
-    saves: 234,
     tags: ["Food", "Culture", "City"],
   },
   {
     destination: "Paris Romance",
     author: "Emma L.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
     image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
     days: 5,
     budget: "$$$$",
-    likes: 432,
-    saves: 167,
     tags: ["Romantic", "Culture", "Food"],
   },
 ];
 
 const trendingDestinations = [
-  { name: "Bali", count: "2.3K trips", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400" },
-  { name: "Tokyo", count: "1.8K trips", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400" },
-  { name: "Paris", count: "3.1K trips", image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400" },
-  { name: "Dubai", count: "1.5K trips", image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400" },
+  { name: "Bali", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400" },
+  { name: "Tokyo", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400" },
+  { name: "Paris", image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400" },
+  { name: "Dubai", image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400" },
 ];
 
 const Explore = () => {
   return (
-    <div className="w-full min-h-screen pb-12">
+    <div className="w-full min-h-screen pb-16">
       {/* Hero Search Section */}
-      <section className="py-20 gradient-mesh">
-          <Container className="animate-fade-in">
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <h1 className="text-5xl md:text-6xl font-bold animate-slide-up">
-                Explore <span className="gradient-text">Amazing</span> Destinations
-              </h1>
-              <p className="text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.1s" }}>
-                Discover your next adventure from thousands of destinations worldwide
-              </p>
-              
-              <div className="flex gap-2 max-w-2xl mx-auto animate-scale-in" style={{ animationDelay: "0.2s" }}>
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input
-                    placeholder="Search destinations, cities, countries..."
-                    className="pl-10 h-12 glass-input focus:ring-2 focus:ring-primary/50"
-                  />
-                </div>
-                <Button size="lg" className="bg-gradient-primary hover:opacity-90 px-8 hover-lift">
-                  Search
-                </Button>
+      <section className="py-16 md:py-20 px-4 bg-gradient-hero">
+        <Container className="animate-fade-in">
+          <div className="max-w-2xl mx-auto text-center space-y-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
+              Find your inspiration
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Discover destinations and get inspired for your next adventure
+            </p>
+            
+            <div className="flex gap-2 max-w-xl mx-auto">
+              <div className="relative flex-1">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search destinations..."
+                  className="pl-10 h-12 bg-background"
+                />
               </div>
+              <Button size="lg" className="h-12 px-6 btn-press">
+                Search
+              </Button>
             </div>
-          </Container>
+          </div>
+        </Container>
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 px-4">
-          <Container>
-            <SectionHeader
-              title="Browse by Category"
-              description="Find trips organized by your travel interests"
-              className="mb-12"
-            />
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {categories.map((category, index) => (
-                <button
-                  key={index}
-                  className="p-6 rounded-2xl glass-card border-border/50 hover:bg-muted/50 transition-all hover-lift group animate-scale-in active:scale-95"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                    {category.icon}
-                  </div>
-                  <h3 className="font-semibold mb-1 text-sm">{category.name}</h3>
-                  <p className="text-xs text-muted-foreground">{category.count} places</p>
-                </button>
-              ))}
-            </div>
-          </Container>
+      <section className="py-12 md:py-16 px-4">
+        <Container>
+          <h2 className="text-xl font-semibold text-foreground mb-6">Browse by category</h2>
+          
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className="p-4 rounded-xl bg-card border border-border/60 hover:border-border hover:shadow-sm transition-all group"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                  {category.icon}
+                </div>
+                <span className="text-sm font-medium text-foreground">{category.name}</span>
+              </button>
+            ))}
+          </div>
+        </Container>
       </section>
 
       {/* Community Trips Section */}
-      <section className="py-16 px-4">
-          <Container>
-            <SectionHeader
-              title="Community Trips"
-              description="Discover amazing itineraries from travelers worldwide"
-              action={
-                <div className="flex gap-2">
-                  <Button variant="outline" className="gap-2 hover-lift">
-                    <TrendingUp className="w-4 h-4" />
-                    Trending
-                  </Button>
-                  <Button variant="outline" className="hover-lift">View All</Button>
+      <section className="py-12 md:py-16 px-4">
+        <Container>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-xl font-semibold text-foreground">Community trips</h2>
+              <p className="text-sm text-muted-foreground mt-1">Itineraries from travelers worldwide</p>
+            </div>
+            <Button variant="outline" size="sm" className="btn-press">
+              View All
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {communityTrips.map((trip, idx) => (
+              <Card
+                key={idx}
+                className="overflow-hidden border-border/60 hover:border-border hover:shadow-md transition-all duration-300 group"
+                style={{ 
+                  animation: 'slide-up 0.5s ease-out forwards',
+                  animationDelay: `${idx * 0.1}s`,
+                  opacity: 0
+                }}
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={trip.image || "/placeholder.svg"}
+                    alt={trip.destination}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  
+                  {/* Like Button */}
+                  <button className="absolute top-3 right-3 p-2 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm text-white transition-colors">
+                    <Heart className="w-4 h-4" />
+                  </button>
+
+                  {/* Trip Info Overlay */}
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <h3 className="text-white font-semibold text-lg">{trip.destination}</h3>
+                    <p className="text-white/80 text-sm">by {trip.author}</p>
+                  </div>
                 </div>
-              }
-              className="mb-12"
-            />
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {communityTrips.map((trip, idx) => (
-                <Card
-                  key={idx}
-                  className="glass-card border-border/50 overflow-hidden hover-lift interactive-card animate-slide-up group"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={trip.image || "/placeholder.svg"}
-                      alt={trip.destination}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    
-                    {/* Action Buttons */}
-                    <div className="absolute top-3 right-3 flex gap-2">
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        className="bg-black/20 hover:bg-black/40 backdrop-blur-sm text-white hover-lift hover:scale-110"
-                      >
-                        <Heart className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        className="bg-black/20 hover:bg-black/40 backdrop-blur-sm text-white hover-lift hover:scale-110"
-                      >
-                        <Share2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-
-                    {/* Trip Info Overlay */}
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <h3 className="text-white font-bold text-lg mb-2">{trip.destination}</h3>
-                      <div className="flex items-center gap-2 text-white/90 text-xs">
-                        <Avatar className="w-5 h-5 border border-white/20">
-                          <AvatarImage src={trip.avatar || "/placeholder.svg"} alt={trip.author} />
-                          <AvatarFallback>{trip.author[0]}</AvatarFallback>
-                        </Avatar>
-                        <span>{trip.author}</span>
-                      </div>
-                    </div>
+                {/* Card Content */}
+                <CardContent className="p-4">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {trip.tags.map((tag, tagIdx) => (
+                      <Badge key={tagIdx} variant="secondary" className="text-xs font-normal">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
 
-                  {/* Card Content */}
-                  <CardContent className="p-4">
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {trip.tags.map((tag, tagIdx) => (
-                        <Badge key={tagIdx} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+                  {/* Trip Details */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span>{trip.days} days</span>
+                      <span className="text-primary font-medium">{trip.budget}</span>
                     </div>
-
-                    {/* Trip Details */}
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-3">
-                        <span className="font-medium">{trip.days} days</span>
-                        <span className="font-semibold text-primary">{trip.budget}</span>
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1 hover:text-foreground transition-colors">
-                          <Heart className="w-4 h-4" />
-                          <span>{trip.likes}</span>
-                        </div>
-                        <div className="flex items-center gap-1 hover:text-foreground transition-colors">
-                          <Star className="w-4 h-4" />
-                          <span>{trip.saves}</span>
-                        </div>
-                      </div>
-                      <Button size="sm" variant="ghost" className="gap-2 hover-lift">
-                        <Copy className="w-3 h-3" />
-                        Clone
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </Container>
+                    <Button size="sm" variant="ghost" className="gap-1.5 text-primary hover:text-primary">
+                      <Lightbulb className="w-3.5 h-3.5" />
+                      Use as inspiration
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Container>
       </section>
 
       {/* Trending Destinations Section */}
-      <section className="py-16 px-4">
-          <Container>
-            <SectionHeader
-              title="Trending Destinations"
-              description="Most visited places this month"
-              className="mb-12"
-            />
+      <section className="py-12 md:py-16 px-4 bg-muted/30">
+        <Container>
+          <h2 className="text-xl font-semibold text-foreground mb-6">Trending destinations</h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {trendingDestinations.map((dest, idx) => (
-                <Card
-                  key={idx}
-                  className="glass-card border-border/50 overflow-hidden hover-lift interactive-card animate-scale-in group cursor-pointer"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={dest.image || "/placeholder.svg"}
-                      alt={dest.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <h4 className="text-white font-bold text-lg">{dest.name}</h4>
-                      <p className="text-white/80 text-xs mt-1">{dest.count}</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Container>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {trendingDestinations.map((dest, idx) => (
+              <div
+                key={idx}
+                className="relative overflow-hidden rounded-xl aspect-[4/3] cursor-pointer group"
+                style={{ 
+                  animation: 'scale-in 0.4s ease-out forwards',
+                  animationDelay: `${idx * 0.1}s`,
+                  opacity: 0
+                }}
+              >
+                <img
+                  src={dest.image || "/placeholder.svg"}
+                  alt={dest.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                
+                <div className="absolute bottom-3 left-3">
+                  <h4 className="text-white font-semibold">{dest.name}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
       </section>
     </div>
   );

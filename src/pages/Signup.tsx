@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Mail, Lock, User, ArrowRight, Eye, EyeOff, Check } from "lucide-react";
+import { MapPin, Mail, Lock, User, ArrowRight, Eye, EyeOff, Check, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,11 +10,11 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const [isFocused, setIsFocused] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate loading
     setTimeout(() => setIsLoading(false), 1500);
   };
 
@@ -25,55 +25,57 @@ const Signup = () => {
   ];
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left panel - Visual */}
-      <div className="hidden lg:flex lg:flex-1 bg-muted items-center justify-center p-12">
-        <div className="max-w-md space-y-6 text-center">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
-            <MapPin className="w-8 h-8 text-primary" />
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left panel - Visual (Simplified) */}
+      <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] bg-muted/50 items-center justify-center p-12">
+        <div className="max-w-sm space-y-6 text-center animate-fade-in">
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
+            <MapPin className="w-7 h-7 text-primary" />
           </div>
-          <h2 className="text-2xl font-semibold text-foreground">
-            Your journey starts here
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Create an account to unlock AI-powered travel planning, save your itineraries, 
-            and join a community of adventurous travelers exploring the world.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-semibold text-foreground">
+              Your journey starts here
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Create personalized travel itineraries in minutes with AI-powered planning.
+            </p>
+          </div>
           
-          {/* Features list */}
-          <div className="pt-6 space-y-4 text-left max-w-sm mx-auto">
+          {/* Features list - minimal */}
+          <div className="pt-4 space-y-3 text-left max-w-xs mx-auto">
             {[
-              "Personalized AI itineraries in seconds",
+              "AI itineraries in seconds",
               "Real-time budget tracking",
-              "Weather-smart activity suggestions",
-              "Offline access to your trips",
+              "Weather-smart suggestions",
             ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-primary" />
+              <div key={i} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-primary" />
                 </div>
-                <span className="text-sm text-muted-foreground">{feature}</span>
+                <span>{feature}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Right panel - Form */}
-      <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+      {/* Right panel - Form (Primary focus) */}
+      <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 xl:px-20">
+        <div className="w-full max-w-md mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
           {/* Logo */}
-          <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-primary-foreground" />
+          <Link to="/" className="inline-flex items-center gap-2 mb-10 group">
+            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
+              <MapPin className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="text-xl font-semibold text-foreground">Trippy</span>
+            <span className="text-lg font-semibold text-foreground">Trippy</span>
           </Link>
 
           {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-semibold text-foreground">Create your account</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
+          <div className="mb-8">
+            <h1 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">
+              Create your account
+            </h1>
+            <p className="text-muted-foreground">
               Start planning unforgettable trips today
             </p>
           </div>
@@ -85,12 +87,16 @@ const Signup = () => {
                 Full name
               </Label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <User className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${
+                  isFocused === 'name' ? 'text-primary' : 'text-muted-foreground'
+                }`} />
                 <Input
                   id="name"
                   type="text"
                   placeholder="John Doe"
-                  className="pl-10 h-11"
+                  className="pl-11 h-12 bg-background"
+                  onFocus={() => setIsFocused('name')}
+                  onBlur={() => setIsFocused(null)}
                   required
                 />
               </div>
@@ -101,12 +107,16 @@ const Signup = () => {
                 Email address
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Mail className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${
+                  isFocused === 'email' ? 'text-primary' : 'text-muted-foreground'
+                }`} />
                 <Input
                   id="email"
                   type="email"
                   placeholder="you@example.com"
-                  className="pl-10 h-11"
+                  className="pl-11 h-12 bg-background"
+                  onFocus={() => setIsFocused('email')}
+                  onBlur={() => setIsFocused(null)}
                   required
                 />
               </div>
@@ -117,32 +127,33 @@ const Signup = () => {
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Lock className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${
+                  isFocused === 'password' ? 'text-primary' : 'text-muted-foreground'
+                }`} />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="pl-10 pr-10 h-11"
+                  className="pl-11 pr-11 h-12 bg-background"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setIsFocused('password')}
+                  onBlur={() => setIsFocused(null)}
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors p-1"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               
               {/* Password requirements */}
               {password.length > 0 && (
-                <div className="mt-3 space-y-2">
+                <div className="mt-3 space-y-1.5">
                   {passwordRequirements.map((req, i) => (
                     <div
                       key={i}
@@ -151,11 +162,11 @@ const Signup = () => {
                       }`}
                     >
                       <div
-                        className={`w-4 h-4 rounded-full flex items-center justify-center transition-colors ${
+                        className={`w-3.5 h-3.5 rounded-full flex items-center justify-center transition-colors ${
                           req.met ? "bg-primary" : "bg-muted"
                         }`}
                       >
-                        <Check className={`w-2.5 h-2.5 ${req.met ? "text-primary-foreground" : "text-muted-foreground"}`} />
+                        <Check className={`w-2 h-2 ${req.met ? "text-primary-foreground" : "text-muted-foreground"}`} />
                       </div>
                       {req.text}
                     </div>
@@ -180,7 +191,7 @@ const Signup = () => {
 
             <Button
               type="submit"
-              className="w-full h-11 btn-press"
+              className="w-full h-12 text-base font-medium btn-press"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -199,16 +210,16 @@ const Signup = () => {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-border" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
+            <div className="relative flex justify-center text-xs">
               <span className="bg-background px-3 text-muted-foreground">
                 Or sign up with
               </span>
             </div>
           </div>
 
-          {/* Social signup */}
+          {/* Social signup - de-emphasized */}
           <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline" className="h-11 btn-press">
+            <Button variant="outline" className="h-11 text-muted-foreground hover:text-foreground">
               <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
@@ -229,7 +240,7 @@ const Signup = () => {
               </svg>
               Google
             </Button>
-            <Button variant="outline" className="h-11 btn-press">
+            <Button variant="outline" className="h-11 text-muted-foreground hover:text-foreground">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
@@ -237,8 +248,22 @@ const Signup = () => {
             </Button>
           </div>
 
+          {/* Trust indicators */}
+          <div className="mt-8 pt-6 border-t border-border">
+            <div className="flex items-center justify-center gap-6 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5" />
+                <span>Data protected</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Free to start</span>
+              </div>
+            </div>
+          </div>
+
           {/* Sign in link */}
-          <p className="mt-8 text-center text-sm text-muted-foreground">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link
               to="/login"
