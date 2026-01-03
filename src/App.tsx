@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
+import Plan from "./pages/Plan";
 import TripDetails from "./pages/TripDetails";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
@@ -33,7 +34,7 @@ const App = () => (
             <Route
               path="/"
               element={
-                <Layout withSidebar={true} withHeader={true} fullWidth={false}>
+                <Layout withSidebar={false} withHeader={true} fullWidth={true}>
                   <Index />
                 </Layout>
               }
@@ -62,6 +63,15 @@ const App = () => (
               element={
                 <Layout>
                   <TripDetails />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/plan"
+              element={
+                <Layout>
+                  <Plan />
                 </Layout>
               }
             />
