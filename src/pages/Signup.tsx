@@ -1,21 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Mail, Lock, User, ArrowRight, Eye, EyeOff, Check, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
+import { signupUser } from "@/services/authApi";
+import Lottie from "lottie-react";
+import travellerAnimation from "@/assets/traveller.json";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1500);
+    
+    try {
+      const response = await signupUser({ name, email, password });
+      localStorage.setItem("auth_token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      toast.success("Account created successfully!");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Signup failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const passwordRequirements = [
@@ -26,40 +44,26 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left panel - Visual (Simplified) */}
+      {/* Left panel - Lottie Animation */}
       <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] bg-muted/50 items-center justify-center p-12">
-        <div className="max-w-sm space-y-6 text-center animate-fade-in">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
-            <MapPin className="w-7 h-7 text-primary" />
-          </div>
-          <div className="space-y-3">
+        <div className="w-full max-w-lg animate-fade-in">
+          <Lottie 
+            animationData={travellerAnimation} 
+            loop={true}
+            className="w-full h-auto"
+          />
+          <div className="text-center mt-6 space-y-2">
             <h2 className="text-xl font-semibold text-foreground">
               Your journey starts here
             </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Create personalized travel itineraries in minutes with AI-powered planning.
+            <p className="text-sm text-muted-foreground">
+              Create personalized travel itineraries in minutes
             </p>
-          </div>
-          
-          {/* Features list - minimal */}
-          <div className="pt-4 space-y-3 text-left max-w-xs mx-auto">
-            {[
-              "AI itineraries in seconds",
-              "Real-time budget tracking",
-              "Weather-smart suggestions",
-            ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-primary" />
-                </div>
-                <span>{feature}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
 
-      {/* Right panel - Form (Primary focus) */}
+      {/* Right panel - Form */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 xl:px-20">
         <div className="w-full max-w-md mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
           {/* Logo */}
@@ -95,6 +99,8 @@ const Signup = () => {
                   type="text"
                   placeholder="John Doe"
                   className="pl-11 h-12 bg-background"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   onFocus={() => setIsFocused('name')}
                   onBlur={() => setIsFocused(null)}
                   required
@@ -115,6 +121,8 @@ const Signup = () => {
                   type="email"
                   placeholder="you@example.com"
                   className="pl-11 h-12 bg-background"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setIsFocused('email')}
                   onBlur={() => setIsFocused(null)}
                   required
