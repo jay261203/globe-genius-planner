@@ -1,28 +1,64 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Mail, Lock, ArrowRight, Eye, EyeOff, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
+import { loginUser } from "@/services/authApi";
+import Lottie from "lottie-react";
+import travellerAnimation from "@/assets/traveller.json";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1500);
+    
+    try {
+      const response = await loginUser({ email, password });
+      localStorage.setItem("auth_token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      toast.success("Welcome back!");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Login failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left panel - Form (Primary focus) */}
-      <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 xl:px-20 order-2 lg:order-1">
-        <div className="w-full max-w-md mx-auto animate-fade-in">
+      {/* Left panel - Lottie Animation */}
+      <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] bg-muted/50 items-center justify-center p-12">
+        <div className="w-full max-w-lg animate-fade-in">
+          <Lottie 
+            animationData={travellerAnimation} 
+            loop={true}
+            className="w-full h-auto"
+          />
+          <div className="text-center mt-6 space-y-2">
+            <h2 className="text-xl font-semibold text-foreground">
+              Plan smarter, travel better
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              AI-crafted itineraries tailored to your style
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Right panel - Form */}
+      <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 xl:px-20">
+        <div className="w-full max-w-md mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
           {/* Logo */}
           <Link to="/" className="inline-flex items-center gap-2 mb-10 group">
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
@@ -86,6 +122,8 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="pl-11 pr-11 h-12 bg-background"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setIsFocused('password')}
                   onBlur={() => setIsFocused(null)}
                   required
@@ -191,41 +229,6 @@ const Login = () => {
               Create an account
             </Link>
           </p>
-        </div>
-      </div>
-
-      {/* Right panel - Visual (Simplified, less competition) */}
-      <div className="hidden lg:flex lg:w-[45%] xl:w-[40%] bg-muted/50 items-center justify-center p-12 order-1 lg:order-2">
-        <div className="max-w-sm space-y-6 text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
-            <MapPin className="w-7 h-7 text-primary" />
-          </div>
-          <div className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">
-              Plan smarter, travel better
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              AI-crafted itineraries tailored to your style. Join 50,000+ travelers planning their perfect trips.
-            </p>
-          </div>
-          
-          {/* Minimal stats */}
-          <div className="flex items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
-            <div className="text-center">
-              <div className="text-lg font-semibold text-foreground">50K+</div>
-              <div className="text-xs">Trips</div>
-            </div>
-            <div className="w-px h-8 bg-border" />
-            <div className="text-center">
-              <div className="text-lg font-semibold text-foreground">4.9★</div>
-              <div className="text-xs">Rating</div>
-            </div>
-            <div className="w-px h-8 bg-border" />
-            <div className="text-center">
-              <div className="text-lg font-semibold text-foreground">120+</div>
-              <div className="text-xs">Countries</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
