@@ -2,20 +2,9 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Calendar, DollarSign, Sparkles, Users, Train, Hotel, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface TripFormData {
-  destination: string;
-  start_date: string;
-  end_date: string;
-  budget_level: string;
-  travel_style: string[];
-  travel_group: {
-    adults: number;
-    children: number;
-  };
-  mobility: string;
-  hotel_preference: string;
-}
+import { generateItinerary, GeneratedItinerary, TripFormData } from "@/services/api";
+import ItineraryDisplay from "./ItineraryDisplay";
+import { toast } from "sonner";
 
 const TripPlanningForm = () => {
   const [formData, setFormData] = useState<TripFormData>({
@@ -29,6 +18,7 @@ const TripPlanningForm = () => {
     hotel_preference: "",
   });
   const [isGenerating, setIsGenerating] = useState(false);
+  const [itinerary, setItinerary] = useState<GeneratedItinerary | null>(null);
 
   const travelStyles = [
     { id: "nature", label: "🌿 Nature" },
@@ -50,10 +40,23 @@ const TripPlanningForm = () => {
     }));
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
+    if (!formData.destination || !formData.start_date || !formData.end_date) {
+      toast.error("Please fill in destination and dates");
+      return;
+    }
+    
     setIsGenerating(true);
-    console.log("Trip Parameters:", formData);
-    setTimeout(() => setIsGenerating(false), 3000);
+    try {
+      const result = await generateItinerary(formData);
+      setItinerary(result);
+      toast.success("Itinerary generated!");
+    } catch (error) {
+      console.error("Generation error:", error);
+      toast.error("Failed to generate itinerary. Make sure your backend is running.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -277,6 +280,16 @@ const TripPlanningForm = () => {
               <div className="h-4 bg-muted rounded-full shimmer w-3/5" />
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Generated Itinerary */}
+      <AnimatePresence>
+        {itinerary && !isGenerating && (
+          <ItineraryDisplay 
+            itinerary={itinerary} 
+            onUpdate={setItinerary}
+          />
         )}
       </AnimatePresence>
     </motion.div>
