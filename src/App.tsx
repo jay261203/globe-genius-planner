@@ -19,6 +19,8 @@ import Settings from "./pages/Settings";
 import Onboarding from "./pages/Onboarding";
 import Receipts from "./pages/Receipts";
 import Photos from "./pages/Photos";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -116,7 +118,23 @@ const App = () => (
               path="/photos"
               element={
                 <Layout>
-                  <Photos />
+                <Photos />
+                </Layout>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <Layout>
+                  <Privacy />
+                </Layout>
+              }
+            />
+            <Route
+              path="/terms"
+              element={
+                <Layout>
+                  <Terms />
                 </Layout>
               }
             />

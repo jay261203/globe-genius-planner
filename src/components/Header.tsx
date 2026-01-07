@@ -88,9 +88,11 @@ const Header = ({ onToggleSidebar }: { onToggleSidebar?: () => void }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Button size="sm" className="btn-press ml-2">
-                Start Planning
-              </Button>
+              <Link to="/plan">
+                <Button size="sm" className="btn-press ml-2">
+                  Start Planning
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
