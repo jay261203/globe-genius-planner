@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -65,10 +66,12 @@ const Profile = () => {
                         <Share2 className="w-4 h-4" />
                         Share
                       </Button>
-                      <Button size="sm" className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
-                        <Settings className="w-4 h-4" />
-                        Edit
-                      </Button>
+                      <Link to="/settings">
+                        <Button size="sm" className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
+                          <Settings className="w-4 h-4" />
+                          Edit Profile
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                   
@@ -174,9 +177,11 @@ const Profile = () => {
                           <span>{trip.saves}</span>
                         </div>
                       </div>
-                      <Button variant="ghost" size="sm" className="hover-lift">
-                        View
-                      </Button>
+                      <Link to={`/trip/${trip.id}`}>
+                        <Button variant="ghost" size="sm" className="hover-lift">
+                          View
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

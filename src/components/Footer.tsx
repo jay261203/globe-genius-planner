@@ -6,26 +6,23 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const footerLinks = {
     product: [
-      { label: "Features", href: "#" },
-      { label: "Destinations", href: "#" },
-      { label: "Pricing", href: "#" },
-      { label: "API", href: "#" },
+      { label: "Plan a Trip", href: "/plan" },
+      { label: "Explore", href: "/explore" },
+      { label: "My Trips", href: "/dashboard" },
     ],
-    company: [
-      { label: "About", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press", href: "#" },
+    resources: [
+      { label: "Photos", href: "/photos" },
+      { label: "Receipts", href: "/receipts" },
+      { label: "Settings", href: "/settings" },
     ],
-    support: [
-      { label: "Help Center", href: "#" },
-      { label: "Contact", href: "#" },
-      { label: "Status", href: "#" },
+    account: [
+      { label: "Profile", href: "/profile" },
+      { label: "Sign In", href: "/login" },
+      { label: "Sign Up", href: "/signup" },
     ],
     legal: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "Cookies", href: "#" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
   };
 
@@ -73,46 +70,46 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Resources */}
           <div>
-            <h4 className="text-sm font-medium text-foreground mb-4">Company</h4>
+            <h4 className="text-sm font-medium text-foreground mb-4">Resources</h4>
             <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
+              {footerLinks.resources.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Account */}
           <div>
-            <h4 className="text-sm font-medium text-foreground mb-4">Support</h4>
+            <h4 className="text-sm font-medium text-foreground mb-4">Account</h4>
             <ul className="space-y-3">
-              {footerLinks.support.map((link) => (
+              {footerLinks.account.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -142,13 +139,13 @@ const Footer = () => {
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
               {footerLinks.legal.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   className="hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
