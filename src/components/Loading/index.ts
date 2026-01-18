@@ -16,3 +16,6 @@ export {
   FeatureCardSkeleton,
   StatCardSkeleton,
 } from "./CardSkeletons";
+
+// Page loader
+export { PageLoader } from "./PageLoader";

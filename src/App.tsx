@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "@/components/Alerts/ErrorBoundary";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Layout from "@/components/Layout";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -27,120 +29,136 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ErrorBoundary>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Layout withSidebar={false} withHeader={true} fullWidth={true}>
-                  <Index />
-                </Layout>
-              }
-            />
+      <AuthProvider>
+        <ErrorBoundary>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              {/* Public Routes */}
+              <Route
+                path="/"
+                element={
+                  <Layout withSidebar={false} withHeader={true} fullWidth={true}>
+                    <Index />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/explore"
+                element={
+                  <Layout>
+                    <Explore />
+                  </Layout>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/privacy"
+                element={
+                  <Layout>
+                    <Privacy />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/terms"
+                element={
+                  <Layout>
+                    <Terms />
+                  </Layout>
+                }
+              />
 
-            <Route
-              path="/dashboard"
-              element={
-                <Layout>
-                  <Dashboard />
-                </Layout>
-              }
-            />
+              {/* Protected Routes */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Dashboard />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/trip/:id"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <TripDetails />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/plan"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Plan />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Profile />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Settings />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/receipts"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Receipts />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/photos"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Photos />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/onboarding"
+                element={
+                  <ProtectedRoute>
+                    <Layout fullWidth={true}>
+                      <Onboarding />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/explore"
-              element={
-                <Layout>
-                  <Explore />
-                </Layout>
-              }
-            />
-
-            <Route
-              path="/trip/:id"
-              element={
-                <Layout>
-                  <TripDetails />
-                </Layout>
-              }
-            />
-
-            <Route
-              path="/plan"
-              element={
-                <Layout>
-                  <Plan />
-                </Layout>
-              }
-            />
-
-            <Route
-              path="/profile"
-              element={
-                <Layout>
-                  <Profile />
-                </Layout>
-              }
-            />
-
-            <Route path="*" element={<NotFound />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/settings"
-              element={
-                <Layout>
-                  <Settings />
-                </Layout>
-              }
-            />
-            <Route
-              path="/onboarding"
-              element={
-                <Layout fullWidth={true}>
-                  <Onboarding />
-                </Layout>
-              }
-            />
-            <Route
-              path="/receipts"
-              element={
-                <Layout>
-                  <Receipts />
-                </Layout>
-              }
-            />
-            <Route
-              path="/photos"
-              element={
-                <Layout>
-                <Photos />
-                </Layout>
-              }
-            />
-            <Route
-              path="/privacy"
-              element={
-                <Layout>
-                  <Privacy />
-                </Layout>
-              }
-            />
-            <Route
-              path="/terms"
-              element={
-                <Layout>
-                  <Terms />
-                </Layout>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </ErrorBoundary>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
