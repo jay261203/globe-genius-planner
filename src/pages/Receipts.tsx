@@ -23,8 +23,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import AddReceiptModal from "@/components/Modal/AddReceiptModal";
+import { toast } from "sonner";
 
-const receiptsData = [
+const initialReceiptsData = [
   {
     id: 1,
     name: "Hotel Reservation - Bali Resort",
@@ -64,8 +66,9 @@ const receiptsData = [
 ];
 
 const Receipts = () => {
-  const [receipts, setReceipts] = useState(receiptsData);
+  const [receipts, setReceipts] = useState(initialReceiptsData);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredReceipts = receipts.filter(receipt =>
     receipt.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -74,12 +77,28 @@ const Receipts = () => {
 
   const handleDelete = (id: number) => {
     setReceipts(receipts.filter(r => r.id !== id));
+    toast.success("Receipt deleted");
   };
 
   const totalAmount = receipts.reduce((sum, r) => {
     const amount = parseFloat(r.amount.replace(/[$,]/g, ''));
     return sum + amount;
   }, 0);
+
+  const handleAddReceipt = (newReceipt: { 
+    name: string; 
+    amount: string; 
+    category: string; 
+    trip: string; 
+    date: string 
+  }) => {
+    const receipt = {
+      id: Date.now(),
+      ...newReceipt,
+      status: "pending" as const,
+    };
+    setReceipts([receipt, ...receipts]);
+  };
 
   return (
     <div className="w-full min-h-screen py-8 px-4">
@@ -90,11 +109,18 @@ const Receipts = () => {
           description="Track and manage all your travel expenses"
           action={
             <div className="flex gap-3">
-              <Button variant="outline" className="gap-2 hover-lift">
+              <Button 
+                variant="outline" 
+                className="gap-2 hover-lift"
+                onClick={() => setIsAddModalOpen(true)}
+              >
                 <Upload className="w-4 h-4" />
                 Upload
               </Button>
-              <Button className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
+              <Button 
+                className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift"
+                onClick={() => setIsAddModalOpen(true)}
+              >
                 <Plus className="w-4 h-4" />
                 Add Receipt
               </Button>
@@ -247,7 +273,10 @@ const Receipts = () => {
                 <p className="text-muted-foreground mb-6">
                   {searchQuery ? "Try adjusting your search" : "Add your first receipt to get started"}
                 </p>
-                <Button className="bg-gradient-primary hover:opacity-90 gap-2">
+                <Button 
+                  className="bg-gradient-primary hover:opacity-90 gap-2"
+                  onClick={() => setIsAddModalOpen(true)}
+                >
                   <Plus className="w-4 h-4" />
                   Add Receipt
                 </Button>
@@ -256,6 +285,13 @@ const Receipts = () => {
           )}
         </div>
       </Container>
+
+      {/* Add Receipt Modal */}
+      <AddReceiptModal
+        open={isAddModalOpen}
+        onOpenChange={setIsAddModalOpen}
+        onAddReceipt={handleAddReceipt}
+      />
     </div>
   );
 };

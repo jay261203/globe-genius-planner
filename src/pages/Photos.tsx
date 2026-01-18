@@ -24,8 +24,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import AddPhotoModal from "@/components/Modal/AddPhotoModal";
+import { toast } from "sonner";
 
-const photosData = [
+const initialPhotosData = [
   {
     id: 1,
     url: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800",
@@ -83,9 +85,10 @@ const photosData = [
 ];
 
 const Photos = () => {
-  const [photos, setPhotos] = useState(photosData);
+  const [photos, setPhotos] = useState(initialPhotosData);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredPhotos = photos.filter(photo =>
     photo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -95,10 +98,21 @@ const Photos = () => {
 
   const handleDelete = (id: number) => {
     setPhotos(photos.filter(p => p.id !== id));
+    toast.success("Photo deleted");
   };
 
   const toggleLike = (id: number) => {
     setPhotos(photos.map(p => p.id === id ? { ...p, liked: !p.liked } : p));
+  };
+
+  const handleAddPhoto = (newPhoto: { title: string; trip: string; location: string; url: string }) => {
+    const photo = {
+      id: Date.now(),
+      ...newPhoto,
+      date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+      liked: false,
+    };
+    setPhotos([photo, ...photos]);
   };
 
   return (
@@ -110,11 +124,18 @@ const Photos = () => {
           description="Your memories captured in beautiful moments"
           action={
             <div className="flex gap-3">
-              <Button variant="outline" className="gap-2 hover-lift">
+              <Button 
+                variant="outline" 
+                className="gap-2 hover-lift"
+                onClick={() => setIsAddModalOpen(true)}
+              >
                 <Upload className="w-4 h-4" />
                 Upload
               </Button>
-              <Button className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift">
+              <Button 
+                className="bg-gradient-primary hover:opacity-90 gap-2 hover-lift"
+                onClick={() => setIsAddModalOpen(true)}
+              >
                 <Plus className="w-4 h-4" />
                 Add Photos
               </Button>
@@ -260,7 +281,10 @@ const Photos = () => {
               <p className="text-muted-foreground mb-6">
                 {searchQuery ? "Try adjusting your search" : "Upload photos to capture your travel memories"}
               </p>
-              <Button className="bg-gradient-primary hover:opacity-90 gap-2">
+              <Button 
+                className="bg-gradient-primary hover:opacity-90 gap-2"
+                onClick={() => setIsAddModalOpen(true)}
+              >
                 <Plus className="w-4 h-4" />
                 Add Photos
               </Button>
@@ -268,6 +292,13 @@ const Photos = () => {
           </Card>
         )}
       </Container>
+
+      {/* Add Photo Modal */}
+      <AddPhotoModal
+        open={isAddModalOpen}
+        onOpenChange={setIsAddModalOpen}
+        onAddPhoto={handleAddPhoto}
+      />
     </div>
   );
 };
